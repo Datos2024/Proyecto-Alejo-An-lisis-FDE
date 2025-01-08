@@ -4,6 +4,8 @@ Imports System.Runtime.InteropServices
 Imports OfficeOpenXml
 Imports NPOI.HSSF.UserModel
 Imports NPOI.SS.UserModel
+Imports NPOI
+Imports DocumentFormat.OpenXml.Drawing
 
 Module Module3
     Sub Main()
@@ -11,6 +13,9 @@ Module Module3
         Dim excelApp As New Excel.Application()
         'Dim worksheet As Excel.Worksheet
         excelApp.Visible = True  ' Hacer visible la aplicación de Excel
+
+
+
 
         ' Abrir un libro de trabajo (reemplaza la ruta por la del archivo que deseas)
         Dim workbook As Excel.Workbook = excelApp.Workbooks.Open("\\comedfs02\Control calidad de empaque\REQUISITOS DE GESTION\INFORMACION ACTIVA\Nuevo.XLS")
@@ -72,9 +77,9 @@ Module Module3
 
 
         ' Guardar y cerrar el libro
-        ' workbook.Save()
-        ' workbook.Close()
-        ' excelApp.Quit()
+        workbook.Save()
+        workbook.Close()
+        excelApp.Quit()
 
 
 
@@ -87,19 +92,19 @@ Module Module3
         'Try
         ' Intentamos obtener la instancia de SAP GUI
         If SAPguiApp Is Nothing Then
-                SAPguiAuto = GetObject("SAPGUI") ' Nos conectamos a la sesión de SAP en curso
-                SAPguiApp = SAPguiAuto.GetScriptingEngine
-            End If
+            SAPguiAuto = GetObject("SAPGUI") ' Nos conectamos a la sesión de SAP en curso
+            SAPguiApp = SAPguiAuto.GetScriptingEngine
+        End If
 
-            ' Obtener la conexión activa
-            If Connection Is Nothing Then
-                Connection = SAPguiApp.Children(0)
-            End If
+        ' Obtener la conexión activa
+        If Connection Is Nothing Then
+            Connection = SAPguiApp.Children(0)
+        End If
 
-            ' Obtener la sesión activa
-            If session Is Nothing Then
-                session = Connection.Children(0)
-            End If
+        ' Obtener la sesión activa
+        If session Is Nothing Then
+            session = Connection.Children(0)
+        End If
 
         ' Si tenemos un objeto WScript (esto generalmente se usa en scripts VBS), conectamos a los eventos
         'If IsObject(WScript) Then
@@ -125,8 +130,8 @@ Module Module3
         session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellColumn = ""
         session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "0"
         session.findById("wnd[0]/tbar[1]/btn[41]").press
-
-        Dim parte1, parte2, Re1, Tamano1 As String
+        session.findById("wnd[0]/usr/tabsUD_DATA/tabpPLMK").select
+        Dim parte1, parte2, Tamano1 As String
         If contador > 0 Then
 
             parte1 = session.findById("wnd[0]/usr/tabsUD_DATA/tabpPLMK/ssubSUB_UD_DATA:SAPMQEVA:0101/tblSAPMQEVAMERKMALE/txtQAMKR-ANZFEHLEH[9,0]").text
@@ -141,7 +146,8 @@ Module Module3
                 parte2 = Left(parte2, Len(parte2) - 4)
             End If
 
-            form.Txtunidades1.Text = parte1 & "/" & parte2
+            form.Txtunidades1.Text = parte1
+            form.TxtInspec1.Text = parte2
 
             parte1 = ""
             parte2 = ""
@@ -151,6 +157,8 @@ Module Module3
             form.TextRe1.Text = session.findById("wnd[1]/usr/txtQAQEE1-RUECKWEZ").Text
             form.TextAc1.Text = session.findById("wnd[1]/usr/txtQAQEE1-ANNAHMEZ").Text
             Tamano1 = session.findById("wnd[1]/usr/txtQAMKR-SOLLSTPUMF").Text
+
+
             session.findById("wnd[1]").close
             session.findById("wnd[0]/tbar[0]/btn[3]").press
 
@@ -170,7 +178,9 @@ Module Module3
                 parte2 = Left(parte2, Len(parte2) - 4)
             End If
 
-            form.Txtunidades2.Text = parte1 & "/" & parte2
+            form.Txtunidades2.Text = parte1
+            form.TxtInspec2.Text = parte2
+
             parte1 = ""
             parte2 = ""
 
@@ -182,6 +192,8 @@ Module Module3
             Tamano1 = session.findById("wnd[1]/usr/txtQAMKR-SOLLSTPUMF").Text
             session.findById("wnd[1]").close
             session.findById("wnd[0]/tbar[0]/btn[3]").press
+
+
         End If
         If contador > 2 Then
 
@@ -197,7 +209,8 @@ Module Module3
                 parte2 = Left(parte2, Len(parte2) - 4)
             End If
 
-            form.Txtunidades3.Text = parte1 & "/" & parte2
+            form.Txtunidades3.Text = parte1
+            form.TxtInspec3.Text = parte2
             parte1 = ""
             parte2 = ""
 
@@ -209,6 +222,7 @@ Module Module3
             Tamano1 = session.findById("wnd[1]/usr/txtQAMKR-SOLLSTPUMF").Text
             session.findById("wnd[1]").close
             session.findById("wnd[0]/tbar[0]/btn[3]").press
+
 
         End If
         If contador > 3 Then
@@ -225,7 +239,8 @@ Module Module3
                 parte2 = Left(parte2, Len(parte2) - 4)
             End If
 
-            form.Txtunidades4.Text = parte1 & "/" & parte2
+            form.Txtunidades4.Text = parte1
+            form.TxtInspec4.Text = parte2
             parte1 = ""
             parte2 = ""
 
@@ -235,9 +250,9 @@ Module Module3
             form.TextRe4.Text = session.findById("wnd[1]/usr/txtQAQEE1-RUECKWEZ").Text
             form.TextAc4.Text = session.findById("wnd[1]/usr/txtQAQEE1-ANNAHMEZ").Text
             Tamano1 = session.findById("wnd[1]/usr/txtQAMKR-SOLLSTPUMF").Text
-            MsgBox(" l ")
             session.findById("wnd[1]").close
             session.findById("wnd[0]/tbar[0]/btn[3]").press
+
 
         End If
         If contador > 4 Then
@@ -254,7 +269,8 @@ Module Module3
                 parte2 = Left(parte2, Len(parte2) - 4)
             End If
 
-            form.Txtunidades5.Text = parte1 & "/" & parte2
+            form.Txtunidades5.Text = parte1
+            form.TxtInspec5.Text = parte2
             parte1 = ""
             parte2 = ""
             session.findById("wnd[0]/usr/tabsUD_DATA/tabpPLMK/ssubSUB_UD_DATA:SAPMQEVA:0101/tblSAPMQEVAMERKMALE/btn*QAMKR-MERKNR[0,4]").setFocus
@@ -266,16 +282,43 @@ Module Module3
             session.findById("wnd[1]").close
             session.findById("wnd[0]/tbar[0]/btn[3]").press
 
+
         End If
         ' End Try
+        'Abre tabla de AQL 
+
+        Dim workbook2 As Excel.Workbook = excelApp.Workbooks.Open("\\comedfs02\Reporte Muestreo e Inspección\Formatos CCE\FDE\TablaAQL1.xlsx", [ReadOnly]:=True)
+        Dim ws1 As Excel.Worksheet = CType(workbook2.ActiveSheet, Excel.Worksheet)
+
+
+        If Form1.TxtInspec1.Text <> "" Then
+
+            Dim fila As Integer
+            fila = 3
+            MsgBox(workbook2)
+            Do While workbook2.Sheets("Hoja2").range("B" & fila) <> ""
+
+                If workbook2.Sheets("Hoja2").range("B" & fila).value = Form1.TxtInspec1.Text Then
+                    MsgBox("aql encontrado " & fila)
+                End If
+
+                fila = fila + 1
+            Loop
+        End If
+
+
 
 
 
         ' Liberar objetos COM para evitar fugas de memoria
+
         System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
         System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
+        System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook2)
         System.Runtime.InteropServices.Marshal.ReleaseComObject(ws)
+        System.Runtime.InteropServices.Marshal.ReleaseComObject(ws1)
         System.Runtime.InteropServices.Marshal.ReleaseComObject(newSheet)
+
 
 
 

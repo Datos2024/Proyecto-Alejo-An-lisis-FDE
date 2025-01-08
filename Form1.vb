@@ -209,6 +209,14 @@ Public Class Form1
 
     End Sub
 
+    Private Sub TextBox8_TextChanged(sender As Object, e As EventArgs) Handles TxtInspec1.TextChanged
+
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    End Sub
+
 
 
 

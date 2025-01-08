@@ -79,6 +79,12 @@ Partial Class Form1
         Me.Txtdefecto3 = New System.Windows.Forms.TextBox()
         Me.Txtdefecto2 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.TxtInspec5 = New System.Windows.Forms.TextBox()
+        Me.TxtInspec4 = New System.Windows.Forms.TextBox()
+        Me.TxtInspec3 = New System.Windows.Forms.TextBox()
+        Me.TxtInspec2 = New System.Windows.Forms.TextBox()
+        Me.TxtInspec1 = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -274,11 +280,11 @@ Partial Class Form1
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Label6.Font = New System.Drawing.Font("Microsoft Yi Baiti", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(145, 34)
+        Me.Label6.Location = New System.Drawing.Point(154, 34)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(86, 32)
+        Me.Label6.Size = New System.Drawing.Size(49, 32)
         Me.Label6.TabIndex = 23
-        Me.Label6.Text = "Unidades" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Defectousas"
+        Me.Label6.Text = "Und. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Defec."
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label7
@@ -369,15 +375,21 @@ Partial Class Form1
         '
         'Txtunidades1
         '
-        Me.Txtunidades1.Location = New System.Drawing.Point(157, 68)
+        Me.Txtunidades1.Location = New System.Drawing.Point(157, 69)
         Me.Txtunidades1.Multiline = True
         Me.Txtunidades1.Name = "Txtunidades1"
-        Me.Txtunidades1.Size = New System.Drawing.Size(62, 20)
+        Me.Txtunidades1.Size = New System.Drawing.Size(30, 20)
         Me.Txtunidades1.TabIndex = 51
         '
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.GroupBox2.Controls.Add(Me.Label9)
+        Me.GroupBox2.Controls.Add(Me.TxtInspec5)
+        Me.GroupBox2.Controls.Add(Me.TxtInspec4)
+        Me.GroupBox2.Controls.Add(Me.TxtInspec3)
+        Me.GroupBox2.Controls.Add(Me.TxtInspec2)
+        Me.GroupBox2.Controls.Add(Me.TxtInspec1)
         Me.GroupBox2.Controls.Add(Me.ComboBox2)
         Me.GroupBox2.Controls.Add(Me.TextRe5)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -419,7 +431,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Txtdefecto1)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 118)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(484, 215)
+        Me.GroupBox2.Size = New System.Drawing.Size(486, 215)
         Me.GroupBox2.TabIndex = 58
         Me.GroupBox2.TabStop = False
         '
@@ -435,7 +447,7 @@ Partial Class Form1
         Me.ComboBox2.Items.AddRange(New Object() {"Z01", "08", "09", "Z055", "Z04", "Z088"})
         Me.ComboBox2.Location = New System.Drawing.Point(254, 12)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(47, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(49, 21)
         Me.ComboBox2.TabIndex = 59
         '
         'TextRe5
@@ -574,7 +586,7 @@ Partial Class Form1
         Me.Txtunidades5.Location = New System.Drawing.Point(157, 172)
         Me.Txtunidades5.Multiline = True
         Me.Txtunidades5.Name = "Txtunidades5"
-        Me.Txtunidades5.Size = New System.Drawing.Size(62, 20)
+        Me.Txtunidades5.Size = New System.Drawing.Size(30, 20)
         Me.Txtunidades5.TabIndex = 64
         '
         'Txtunidades4
@@ -582,7 +594,7 @@ Partial Class Form1
         Me.Txtunidades4.Location = New System.Drawing.Point(157, 147)
         Me.Txtunidades4.Multiline = True
         Me.Txtunidades4.Name = "Txtunidades4"
-        Me.Txtunidades4.Size = New System.Drawing.Size(62, 20)
+        Me.Txtunidades4.Size = New System.Drawing.Size(30, 20)
         Me.Txtunidades4.TabIndex = 63
         '
         'Txtunidades3
@@ -590,7 +602,7 @@ Partial Class Form1
         Me.Txtunidades3.Location = New System.Drawing.Point(157, 120)
         Me.Txtunidades3.Multiline = True
         Me.Txtunidades3.Name = "Txtunidades3"
-        Me.Txtunidades3.Size = New System.Drawing.Size(62, 20)
+        Me.Txtunidades3.Size = New System.Drawing.Size(30, 20)
         Me.Txtunidades3.TabIndex = 62
         '
         'Txtunidades2
@@ -598,7 +610,7 @@ Partial Class Form1
         Me.Txtunidades2.Location = New System.Drawing.Point(157, 94)
         Me.Txtunidades2.Multiline = True
         Me.Txtunidades2.Name = "Txtunidades2"
-        Me.Txtunidades2.Size = New System.Drawing.Size(62, 20)
+        Me.Txtunidades2.Size = New System.Drawing.Size(30, 20)
         Me.Txtunidades2.TabIndex = 61
         '
         'Txtdefecto5
@@ -641,6 +653,58 @@ Partial Class Form1
         Me.Button2.TabIndex = 59
         Me.Button2.Text = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TxtInspec5
+        '
+        Me.TxtInspec5.Location = New System.Drawing.Point(208, 172)
+        Me.TxtInspec5.Multiline = True
+        Me.TxtInspec5.Name = "TxtInspec5"
+        Me.TxtInspec5.Size = New System.Drawing.Size(30, 20)
+        Me.TxtInspec5.TabIndex = 84
+        '
+        'TxtInspec4
+        '
+        Me.TxtInspec4.Location = New System.Drawing.Point(208, 147)
+        Me.TxtInspec4.Multiline = True
+        Me.TxtInspec4.Name = "TxtInspec4"
+        Me.TxtInspec4.Size = New System.Drawing.Size(30, 20)
+        Me.TxtInspec4.TabIndex = 83
+        '
+        'TxtInspec3
+        '
+        Me.TxtInspec3.Location = New System.Drawing.Point(208, 120)
+        Me.TxtInspec3.Multiline = True
+        Me.TxtInspec3.Name = "TxtInspec3"
+        Me.TxtInspec3.Size = New System.Drawing.Size(30, 20)
+        Me.TxtInspec3.TabIndex = 82
+        '
+        'TxtInspec2
+        '
+        Me.TxtInspec2.Location = New System.Drawing.Point(208, 94)
+        Me.TxtInspec2.Multiline = True
+        Me.TxtInspec2.Name = "TxtInspec2"
+        Me.TxtInspec2.Size = New System.Drawing.Size(30, 20)
+        Me.TxtInspec2.TabIndex = 81
+        '
+        'TxtInspec1
+        '
+        Me.TxtInspec1.Location = New System.Drawing.Point(208, 69)
+        Me.TxtInspec1.Multiline = True
+        Me.TxtInspec1.Name = "TxtInspec1"
+        Me.TxtInspec1.Size = New System.Drawing.Size(30, 20)
+        Me.TxtInspec1.TabIndex = 80
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Yi Baiti", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(205, 34)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(46, 32)
+        Me.Label9.TabIndex = 85
+        Me.Label9.Text = "Und. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Insp."
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Form1
         '
@@ -733,4 +797,10 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents TxtInspec5 As TextBox
+    Friend WithEvents TxtInspec4 As TextBox
+    Friend WithEvents TxtInspec3 As TextBox
+    Friend WithEvents TxtInspec2 As TextBox
+    Friend WithEvents TxtInspec1 As TextBox
+    Friend WithEvents Label9 As Label
 End Class
