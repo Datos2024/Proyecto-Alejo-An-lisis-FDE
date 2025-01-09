@@ -12,11 +12,7 @@ Module Module3
         ' Iniciar una nueva instancia de Excel
         Dim excelApp As New Excel.Application()
         'Dim worksheet As Excel.Worksheet
-        excelApp.Visible = True  ' Hacer visible la aplicación de Excel
-
-
-
-
+        excelApp.Visible = False  ' Hacer visible la aplicación de Excel
         ' Abrir un libro de trabajo (reemplaza la ruta por la del archivo que deseas)
         Dim workbook As Excel.Workbook = excelApp.Workbooks.Open("\\comedfs02\Control calidad de empaque\REQUISITOS DE GESTION\INFORMACION ACTIVA\Nuevo.XLS")
         Dim ws As Excel.Worksheet = CType(workbook.ActiveSheet, Excel.Worksheet)
@@ -77,9 +73,9 @@ Module Module3
 
 
         ' Guardar y cerrar el libro
-        workbook.Save()
-        workbook.Close()
-        excelApp.Quit()
+        'workbook.Save()
+        'workbook.Close()
+        'excelApp.Quit()
 
 
 
@@ -116,7 +112,6 @@ Module Module3
 
 
 
-
         session.findById("wnd[0]").maximize
         session.findById("wnd[0]/tbar[0]/okcd").text = "/nQA33"
         session.findById("wnd[0]").sendVKey(0)
@@ -131,7 +126,9 @@ Module Module3
         session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "0"
         session.findById("wnd[0]/tbar[1]/btn[41]").press
         session.findById("wnd[0]/usr/tabsUD_DATA/tabpPLMK").select
+
         Dim parte1, parte2, Tamano1 As String
+
         If contador > 0 Then
 
             parte1 = session.findById("wnd[0]/usr/tabsUD_DATA/tabpPLMK/ssubSUB_UD_DATA:SAPMQEVA:0101/tblSAPMQEVAMERKMALE/txtQAMKR-ANZFEHLEH[9,0]").text
@@ -285,27 +282,354 @@ Module Module3
 
         End If
         ' End Try
+
+
         'Abre tabla de AQL 
 
-        Dim workbook2 As Excel.Workbook = excelApp.Workbooks.Open("\\comedfs02\Reporte Muestreo e Inspección\Formatos CCE\FDE\TablaAQL1.xlsx", [ReadOnly]:=True)
+        Dim excelApp1 As New Excel.Application()
+        excelApp1.Visible = True
+        Dim workbook2 As Excel.Workbook = excelApp1.Workbooks.Open("\\comedfs02\Reporte Muestreo e Inspección\Formatos CCE\FDE\TablaAQL1.xlsx", [ReadOnly]:=True)
         Dim ws1 As Excel.Worksheet = CType(workbook2.ActiveSheet, Excel.Worksheet)
 
 
-        If Form1.TxtInspec1.Text <> "" Then
+        'Valida Primera fila 
 
-            Dim fila As Integer
+
+        If form.TxtInspec1.Text <> String.Empty Then
+            Dim fila As Long
             fila = 3
-            MsgBox(workbook2)
-            Do While workbook2.Sheets("Hoja2").range("B" & fila) <> ""
 
-                If workbook2.Sheets("Hoja2").range("B" & fila).value = Form1.TxtInspec1.Text Then
-                    MsgBox("aql encontrado " & fila)
+            ' Recorremos las filas
+            Do While True
+                ' Obtenemos el valor de la celda en la columna B
+                Dim cellValue As Object = workbook2.Sheets("Hoja2").Range("B" & fila).Value
+
+                ' Verificamos si la celda tiene un valor válido (no es Nothing y no es error)
+                If IsNothing(cellValue) OrElse IsError(cellValue) Then
+                    Exit Do
                 End If
 
-                fila = fila + 1
+                ' Inicializamos la cadena que contendrá el valor convertido
+                Dim cellValueStr As String = String.Empty
+
+                ' Si el valor de la celda es un número (Double), lo convertimos a String
+                If TypeOf cellValue Is Double Then
+                    cellValueStr = cellValue.ToString()
+                    ' Si el valor de la celda es una cadena, lo asignamos directamente
+                ElseIf TypeOf cellValue Is String Then
+                    cellValueStr = CStr(cellValue)
+                    ' Si el valor de la celda es una fecha, la convertimos a String con un formato adecuado
+                ElseIf TypeOf cellValue Is Date Then
+                    cellValueStr = CType(cellValue, Date).ToString("yyyy-MM-dd")
+                End If
+
+                ' Comparamos el valor de la celda con el texto del formulario
+                If cellValueStr = form.TxtInspec1.Text Then
+
+                    If workbook2.Sheets("Hoja2").Range("C" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("d" & fila).Value = form.TextRe1.Text Then
+
+                        form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("C1").Value
+                    Else
+                        If workbook2.Sheets("Hoja2").Range("E" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("F" & fila).Value = form.TextRe1.Text Then
+
+                            form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("E1").Value
+                        Else
+                            If workbook2.Sheets("Hoja2").Range("G" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("H" & fila).Value = form.TextRe1.Text Then
+
+                                form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("G1").Value
+                            Else
+                                If workbook2.Sheets("Hoja2").Range("I" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("J" & fila).Value = form.TextRe1.Text Then
+
+                                    form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("I1").Value
+                                Else
+                                    If workbook2.Sheets("Hoja2").Range("K" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("L" & fila).Value = form.TextRe1.Text Then
+
+                                        form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("K1").Value
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
+
+                    Exit Do
+                    End If
+
+                    ' Incrementamos la fila
+                    fila += 1
             Loop
         End If
 
+        'Valida Segunda fila 
+
+        If form.TxtInspec2.Text <> String.Empty Then
+            Dim fila As Long
+            fila = 3
+
+            ' Recorremos las filas
+            Do While True
+                ' Obtenemos el valor de la celda en la columna B
+                Dim cellValue As Object = workbook2.Sheets("Hoja2").Range("B" & fila).Value
+
+                ' Verificamos si la celda tiene un valor válido (no es Nothing y no es error)
+                If IsNothing(cellValue) OrElse IsError(cellValue) Then
+                    Exit Do
+                End If
+
+                ' Inicializamos la cadena que contendrá el valor convertido
+                Dim cellValueStr As String = String.Empty
+
+                ' Si el valor de la celda es un número (Double), lo convertimos a String
+                If TypeOf cellValue Is Double Then
+                    cellValueStr = cellValue.ToString()
+                    ' Si el valor de la celda es una cadena, lo asignamos directamente
+                ElseIf TypeOf cellValue Is String Then
+                    cellValueStr = CStr(cellValue)
+                    ' Si el valor de la celda es una fecha, la convertimos a String con un formato adecuado
+                ElseIf TypeOf cellValue Is Date Then
+                    cellValueStr = CType(cellValue, Date).ToString("yyyy-MM-dd")
+                End If
+
+                ' Comparamos el valor de la celda con el texto del formulario
+                If cellValueStr = form.TxtInspec2.Text Then
+
+                    If workbook2.Sheets("Hoja2").Range("C" & fila).Value = form.TextAc2.Text And workbook2.Sheets("Hoja2").Range("d" & fila).Value = form.TextRe2.Text Then
+
+                        form.TxTiposAql2.Text = workbook2.Sheets("Hoja2").Range("C1").Value
+                    Else
+                        If workbook2.Sheets("Hoja2").Range("E" & fila).Value = form.TextAc2.Text And workbook2.Sheets("Hoja2").Range("F" & fila).Value = form.TextRe2.Text Then
+
+                            form.TxTiposAql2.Text = workbook2.Sheets("Hoja2").Range("E1").Value
+                        Else
+                            If workbook2.Sheets("Hoja2").Range("G" & fila).Value = form.TextAc2.Text And workbook2.Sheets("Hoja2").Range("H" & fila).Value = form.TextRe2.Text Then
+
+                                form.TxTiposAql2.Text = workbook2.Sheets("Hoja2").Range("G1").Value
+                            Else
+                                If workbook2.Sheets("Hoja2").Range("I" & fila).Value = form.TextAc2.Text And workbook2.Sheets("Hoja2").Range("J" & fila).Value = form.TextRe2.Text Then
+
+                                    form.TxTiposAql2.Text = workbook2.Sheets("Hoja2").Range("I1").Value
+                                Else
+                                    If workbook2.Sheets("Hoja2").Range("K" & fila).Value = form.TextAc2.Text And workbook2.Sheets("Hoja2").Range("L" & fila).Value = form.TextRe2.Text Then
+
+                                        form.TxTiposAql2.Text = workbook2.Sheets("Hoja2").Range("K1").Value
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
+
+                    Exit Do
+                End If
+
+                ' Incrementamos la fila
+                fila += 1
+            Loop
+        End If
+
+
+        'Valida Ter fila 
+
+        If form.TxtInspec3.Text <> String.Empty Then
+            Dim fila As Long
+            fila = 3
+
+            ' Recorremos las filas
+            Do While True
+                ' Obtenemos el valor de la celda en la columna B
+                Dim cellValue As Object = workbook2.Sheets("Hoja2").Range("B" & fila).Value
+
+                ' Verificamos si la celda tiene un valor válido (no es Nothing y no es error)
+                If IsNothing(cellValue) OrElse IsError(cellValue) Then
+                    Exit Do
+                End If
+
+                ' Inicializamos la cadena que contendrá el valor convertido
+                Dim cellValueStr As String = String.Empty
+
+                ' Si el valor de la celda es un número (Double), lo convertimos a String
+                If TypeOf cellValue Is Double Then
+                    cellValueStr = cellValue.ToString()
+                    ' Si el valor de la celda es una cadena, lo asignamos directamente
+                ElseIf TypeOf cellValue Is String Then
+                    cellValueStr = CStr(cellValue)
+                    ' Si el valor de la celda es una fecha, la convertimos a String con un formato adecuado
+                ElseIf TypeOf cellValue Is Date Then
+                    cellValueStr = CType(cellValue, Date).ToString("yyyy-MM-dd")
+                End If
+
+                ' Comparamos el valor de la celda con el texto del formulario
+                If cellValueStr = form.TxtInspec3.Text Then
+
+                    If workbook2.Sheets("Hoja2").Range("C" & fila).Value = form.TextAc3.Text And workbook2.Sheets("Hoja2").Range("d" & fila).Value = form.TextRe3.Text Then
+
+                        form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("C1").Value
+                    Else
+                        If workbook2.Sheets("Hoja2").Range("E" & fila).Value = form.TextAc3.Text And workbook2.Sheets("Hoja2").Range("F" & fila).Value = form.TextRe3.Text Then
+
+                            form.TxTiposAql3.Text = workbook2.Sheets("Hoja2").Range("E1").Value
+                        Else
+                            If workbook2.Sheets("Hoja2").Range("G" & fila).Value = form.TextAc3.Text And workbook2.Sheets("Hoja2").Range("H" & fila).Value = form.TextRe3.Text Then
+
+                                form.TxTiposAql3.Text = workbook2.Sheets("Hoja2").Range("G1").Value
+                            Else
+                                If workbook2.Sheets("Hoja2").Range("I" & fila).Value = form.TextAc3.Text And workbook2.Sheets("Hoja2").Range("J" & fila).Value = form.TextRe3.Text Then
+
+                                    form.TxTiposAql1.Text = workbook2.Sheets("Hoja2").Range("I1").Value
+                                Else
+                                    If workbook2.Sheets("Hoja2").Range("K" & fila).Value = form.TextAc3.Text And workbook2.Sheets("Hoja2").Range("L" & fila).Value = form.TextRe3.Text Then
+
+                                        form.TxTiposAql3.Text = workbook2.Sheets("Hoja2").Range("K1").Value
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
+
+                    Exit Do
+                End If
+
+                ' Incrementamos la fila
+                fila += 1
+            Loop
+        End If
+
+
+
+        'valida 4 fila 
+
+        If form.TxtInspec4.Text <> String.Empty Then
+            Dim fila As Long
+            fila = 3
+
+            ' Recorremos las filas
+            Do While True
+                ' Obtenemos el valor de la celda en la columna B
+                Dim cellValue As Object = workbook2.Sheets("Hoja2").Range("B" & fila).Value
+
+                ' Verificamos si la celda tiene un valor válido (no es Nothing y no es error)
+                If IsNothing(cellValue) OrElse IsError(cellValue) Then
+                    Exit Do
+                End If
+
+                ' Inicializamos la cadena que contendrá el valor convertido
+                Dim cellValueStr As String = String.Empty
+
+                ' Si el valor de la celda es un número (Double), lo convertimos a String
+                If TypeOf cellValue Is Double Then
+                    cellValueStr = cellValue.ToString()
+                    ' Si el valor de la celda es una cadena, lo asignamos directamente
+                ElseIf TypeOf cellValue Is String Then
+                    cellValueStr = CStr(cellValue)
+                    ' Si el valor de la celda es una fecha, la convertimos a String con un formato adecuado
+                ElseIf TypeOf cellValue Is Date Then
+                    cellValueStr = CType(cellValue, Date).ToString("yyyy-MM-dd")
+                End If
+
+                ' Comparamos el valor de la celda con el texto del formulario
+                If cellValueStr = form.TxtInspec4.Text Then
+
+                    If workbook2.Sheets("Hoja2").Range("C" & fila).Value = form.TextAc4.Text And workbook2.Sheets("Hoja2").Range("d" & fila).Value = form.TextRe4.Text Then
+
+                        form.TxTiposAql4.Text = workbook2.Sheets("Hoja2").Range("C1").Value
+                    Else
+                        If workbook2.Sheets("Hoja2").Range("E" & fila).Value = form.TextAc4.Text And workbook2.Sheets("Hoja2").Range("F" & fila).Value = form.TextRe4.Text Then
+
+                            form.TxTiposAql4.Text = workbook2.Sheets("Hoja2").Range("E1").Value
+                        Else
+                            If workbook2.Sheets("Hoja2").Range("G" & fila).Value = form.TextAc4.Text And workbook2.Sheets("Hoja2").Range("H" & fila).Value = form.TextRe4.Text Then
+
+                                form.TxTiposAql4.Text = workbook2.Sheets("Hoja2").Range("G1").Value
+                            Else
+                                If workbook2.Sheets("Hoja2").Range("I" & fila).Value = form.TextAc4.Text And workbook2.Sheets("Hoja2").Range("J" & fila).Value = form.TextRe4.Text Then
+
+                                    form.TxTiposAql4.Text = workbook2.Sheets("Hoja2").Range("I1").Value
+                                Else
+                                    If workbook2.Sheets("Hoja2").Range("K" & fila).Value = form.TextAc4.Text And workbook2.Sheets("Hoja2").Range("L" & fila).Value = form.TextRe4.Text Then
+
+                                        form.TxTiposAql4.Text = workbook2.Sheets("Hoja2").Range("K1").Value
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
+
+                    Exit Do
+                End If
+
+                ' Incrementamos la fila
+                fila += 1
+            Loop
+        End If
+
+        'Valida 5 fila 
+
+        If form.TxtInspec5.Text <> String.Empty Then
+            Dim fila As Long
+            fila = 3
+
+            ' Recorremos las filas
+            Do While True
+                ' Obtenemos el valor de la celda en la columna B
+                Dim cellValue As Object = workbook2.Sheets("Hoja2").Range("B" & fila).Value
+
+                ' Verificamos si la celda tiene un valor válido (no es Nothing y no es error)
+                If IsNothing(cellValue) OrElse IsError(cellValue) Then
+                    Exit Do
+                End If
+
+                ' Inicializamos la cadena que contendrá el valor convertido
+                Dim cellValueStr As String = String.Empty
+
+                ' Si el valor de la celda es un número (Double), lo convertimos a String
+                If TypeOf cellValue Is Double Then
+                    cellValueStr = cellValue.ToString()
+                    ' Si el valor de la celda es una cadena, lo asignamos directamente
+                ElseIf TypeOf cellValue Is String Then
+                    cellValueStr = CStr(cellValue)
+                    ' Si el valor de la celda es una fecha, la convertimos a String con un formato adecuado
+                ElseIf TypeOf cellValue Is Date Then
+                    cellValueStr = CType(cellValue, Date).ToString("yyyy-MM-dd")
+                End If
+
+                ' Comparamos el valor de la celda con el texto del formulario
+                If cellValueStr = form.TxtInspec5.Text Then
+
+                    If workbook2.Sheets("Hoja2").Range("C" & fila).Value = form.TextAc5.Text And workbook2.Sheets("Hoja2").Range("d" & fila).Value = form.TextRe5.Text Then
+
+                        form.TxTiposAql5.Text = workbook2.Sheets("Hoja2").Range("C1").Value
+                    Else
+                        If workbook2.Sheets("Hoja2").Range("E" & fila).Value = form.TextAc5.Text And workbook2.Sheets("Hoja2").Range("F" & fila).Value = form.TextRe5.Text Then
+
+                            form.TxTiposAql5.Text = workbook2.Sheets("Hoja2").Range("E1").Value
+                        Else
+                            If workbook2.Sheets("Hoja2").Range("G" & fila).Value = form.TextAc1.Text And workbook2.Sheets("Hoja2").Range("H" & fila).Value = form.TextRe1.Text Then
+
+                                form.TxTiposAql5.Text = workbook2.Sheets("Hoja2").Range("G1").Value
+                            Else
+                                If workbook2.Sheets("Hoja2").Range("I" & fila).Value = form.TextAc5.Text And workbook2.Sheets("Hoja2").Range("J" & fila).Value = form.TextRe5.Text Then
+
+                                    form.TxTiposAql5.Text = workbook2.Sheets("Hoja2").Range("I1").Value
+                                Else
+                                    If workbook2.Sheets("Hoja2").Range("K" & fila).Value = form.TextAc5.Text And workbook2.Sheets("Hoja2").Range("L" & fila).Value = form.TextRe5.Text Then
+
+                                        form.TxTiposAql5.Text = workbook2.Sheets("Hoja2").Range("K1").Value
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
+
+                    Exit Do
+                End If
+
+                ' Incrementamos la fila
+                fila += 1
+            Loop
+        End If
 
 
 
