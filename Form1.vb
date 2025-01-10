@@ -48,7 +48,7 @@ Public Class Form1
         Hoja1.Cells(Final, 6).Value = TextRe1.Text ' Registro AC
         Hoja1.Cells(Final, 7).Value = TextAc1.Text ' Registro RC
         Hoja1.Cells(Final, 8).Value = NotasDE.Text 'Hace registro de las observaciones  
-        Hoja1.Cells(Final, 9).Value = ObserTxt.Text 'Hace registro de la nota para DE
+        Hoja1.Cells(Final, 9).Value = TxtObser.Text 'Hace registro de la nota para DE
 
 
 
@@ -72,138 +72,199 @@ Public Class Form1
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
-        ' Validar si los campos de usuario y contraseña están vacíos
-        If String.IsNullOrEmpty(TextBox4.Text) Or String.IsNullOrEmpty(TextBox5.Text) Then
-            MessageBox.Show("Por favor, ingrese tanto el usuario como la contraseña.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return ' No continuar si los campos están vacíos
+        Dim pregunta = MsgBox("¿Tiene sección iniciada en SAP?", vbYesNo + vbQuestion, "CCE, PREBEL S.A.")
+        If pregunta = vbNo Then
+            MsgBox("Inicie SAP y vuelva a intentar")
+        Else
+            If TextBox1.Text = String.Empty Or ComboBox2.Text = String.Empty Then
+                MsgBox("Campos obligatorios estan vacios")
+            Else
+
+                '' Validar si los campos de usuario y contraseña están vacíos
+                'If String.IsNullOrEmpty(TextBox4.Text) Or String.IsNullOrEmpty(TextBox5.Text) Then
+                '    MessageBox.Show("Por favor, ingrese tanto el usuario como la contraseña.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                '    Return ' No continuar si los campos están vacíos
+                'End If
+
+                Try
+                    Dim SAPguiApp As Object = Nothing
+                    Dim SAPguiAuto As Object = Nothing
+                    Dim Connection As Object = Nothing
+                    Dim session As Object = Nothing
+
+                    '' Verifica si SAP GUI está activo
+                    'SAPguiAuto = GetObject("SAPGUI")
+                    'If SAPguiAuto Is Nothing Then
+                    '    ' Abre SAP Logon si no está activo
+                    '    Dim WshShell As Object = CreateObject("WScript.Shell")
+                    '    WshShell.Exec("C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe")
+
+                    '    ' Espera a que SAP Logon esté listo
+                    '    Do While Not WshShell.AppActivate("SAP Logon 750")
+                    '        System.Threading.Thread.Sleep(1000)
+                    '    Loop
+
+                    '    ' Intenta conectar nuevamente
+                    '    SAPguiAuto = GetObject("SAPGUI")
+                    '    If SAPguiAuto Is Nothing Then
+                    '        Throw New Exception("No se pudo iniciar SAP GUI.")
+                    '    End If
+                    'End If
+
+                    '' Obtiene el motor de scripting de SAP GUI
+                    'SAPguiApp = SAPguiAuto.GetScriptingEngine
+                    'If SAPguiApp Is Nothing Then
+                    '    Throw New Exception("No se pudo obtener el motor de scripting de SAP GUI.")
+                    'End If
+
+                    '' Abre la conexión a SAP
+                    ''Connection = SAPguiApp.OpenConnection("PRD [COMERCIAL]", True)
+                    'Connection = SAPguiApp.OpenConnection("QAS [CALIDAD]", True)
+                    'If Connection Is Nothing Then
+                    '    Throw New Exception("No se pudo abrir la conexión a SAP.")
+                    'End If
+
+                    '' Obtiene la sesión
+                    'session = Connection.Children(0)
+                    'If session Is Nothing Then
+                    '    Throw New Exception("No se pudo establecer la sesión en SAP.")
+                    'End If
+
+                    '' Introduce las credenciales
+                    'session.findById("wnd[0]/usr/txtRSYST-BNAME").text = TextBox4.Text
+                    'session.findById("wnd[0]/usr/pwdRSYST-BCODE").text = TextBox5.Text
+                    'session.findById("wnd[0]").sendVKey(0)
+
+                    '' Verifica si SAP muestra un mensaje de error (ventana de error)
+                    'Try
+                    '    ' Espera un momento para ver si aparece el mensaje de error de SAP
+                    '    If session.findById("wnd[1]").Type = "GuiDialog" Then
+                    '        MessageBox.Show("Nombre de usuario o clave de acceso incorrectos.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '        TextBox4.Clear() ' Borra el campo de usuario
+                    '        TextBox5.Clear() ' Borra el campo de contraseña
+                    '        Return ' Detiene la ejecución
+                    '    End If
+                    'Catch ex As Exception
+                    '    ' Si no aparece el mensaje de error, se sigue con el flujo normal
+                    'End Try
+
+                    '' Maneja múltiples sesiones abiertas
+                    'If session.Children.Count > 1 Then
+                    '    session.findById("wnd[1]/usr/radMULTI_LOGON_OPT2").Select()
+                    '    session.findById("wnd[1]/usr/radMULTI_LOGON_OPT2").SetFocus()
+                    '    session.findById("wnd[1]/tbar[0]/btn[0]").Press()
+                    'End If
+
+                    'MessageBox.Show("Conexión exitosa con SAP", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    If SAPguiApp Is Nothing Then
+                        SAPguiAuto = GetObject("SAPGUI") ' Nos conectamos a la sesión de SAP en curso
+                        SAPguiApp = SAPguiAuto.GetScriptingEngine
+                    End If
+
+                    ' Obtener la conexión activa
+                    If Connection Is Nothing Then
+                        Connection = SAPguiApp.Children(0)
+                    End If
+
+                    ' Obtener la sesión activa
+                    If session Is Nothing Then
+                        session = Connection.Children(0)
+                    End If
+
+                    session.findById("wnd[0]/tbar[0]/okcd").Text = "/nzqm25"
+                    session.findById("wnd[0]").sendVKey(0)
+                    session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "1000"
+                    session.findById("wnd[0]/usr/ctxtSO_FLOTE-LOW").Text = "17.01.2022"
+                    session.findById("wnd[0]/usr/ctxtSO_FLOTE-HIGH").Text = "31.12.2030"
+                    'session.findById("wnd[0]/usr/ctxtSO_MATNR-LOW").Text = TextBox1.Text
+
+
+
+                    'session.findById("wnd[0]/usr/ctxtSO_ART-LOW").Text = "*"
+
+                    'session.findById("wnd[0]/usr/btn%_SO_CHARG_%_APP_%-VALU_PUSH").press
+                    'session.findById("wnd[1]/tbar[0]/btn[16]").press
+                    'session.findById("wnd[1]/tbar[0]/btn[24]").press
+                    'session.findById("wnd[1]/tbar[0]/btn[8]").press
+
+                    'session.findById("wnd[0]/usr/ctxtSO_ART-LOW").Text = Range("K1").Value
+                    session.findById("wnd[0]/usr/ctxtSO_ART-LOW").text = ComboBox2.Text
+                    session.findById("wnd[0]/usr/ctxtSO_CHARG-LOW").Text = TextBox1.Text
+                    session.findById("wnd[0]/usr/ctxtP_LAYOUT").Text = "/INFORMEFDE"
+                    session.findById("wnd[0]/usr/ctxtP_LAYOUT").SetFocus
+                    session.findById("wnd[0]/usr/ctxtP_LAYOUT").caretPosition = 11
+                    session.findById("wnd[0]/tbar[1]/btn[8]").press
+
+                    session.findById("wnd[0]/mbar/menu[0]/menu[3]/menu[2]").Select
+                    session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").Select
+                    session.findById("wnd[1]/tbar[0]/btn[0]").press
+                    'session.findById("wnd[1]/tbar[0]/btn[0]").press
+                    session.findById("wnd[1]/usr/ctxtDY_PATH").Text = "\\COMEDFS02\CONTROL CALIDAD DE EMPAQUE\REQUISITOS DE GESTION\INFORMACION ACTIVA\"
+                    session.findById("wnd[1]/usr/ctxtDY_FILENAME").Text = "Nuevo1.XLS"
+                    session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 1
+                    session.findById("wnd[1]/tbar[0]/btn[11]").press
+                    session.findById("wnd[0]/tbar[0]/btn[3]").press
+                    session.findById("wnd[0]/tbar[0]/btn[3]").press
+
+                    ''Main()
+                Catch ex As Exception
+                    MessageBox.Show($"Error al conectar con SAP: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+                Main()
+            End If
         End If
-
-        Try
-            Dim SAPguiApp As Object = Nothing
-            Dim SAPguiAuto As Object = Nothing
-            Dim Connection As Object = Nothing
-            Dim session As Object = Nothing
-
-            ' Verifica si SAP GUI está activo
-            SAPguiAuto = GetObject("SAPGUI")
-            If SAPguiAuto Is Nothing Then
-                ' Abre SAP Logon si no está activo
-                Dim WshShell As Object = CreateObject("WScript.Shell")
-                WshShell.Exec("C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe")
-
-                ' Espera a que SAP Logon esté listo
-                Do While Not WshShell.AppActivate("SAP Logon 750")
-                    System.Threading.Thread.Sleep(1000)
-                Loop
-
-                ' Intenta conectar nuevamente
-                SAPguiAuto = GetObject("SAPGUI")
-                If SAPguiAuto Is Nothing Then
-                    Throw New Exception("No se pudo iniciar SAP GUI.")
-                End If
-            End If
-
-            ' Obtiene el motor de scripting de SAP GUI
-            SAPguiApp = SAPguiAuto.GetScriptingEngine
-            If SAPguiApp Is Nothing Then
-                Throw New Exception("No se pudo obtener el motor de scripting de SAP GUI.")
-            End If
-
-            ' Abre la conexión a SAP
-            'Connection = SAPguiApp.OpenConnection("PRD [COMERCIAL]", True)
-            Connection = SAPguiApp.OpenConnection("QAS [CALIDAD]", True)
-            If Connection Is Nothing Then
-                Throw New Exception("No se pudo abrir la conexión a SAP.")
-            End If
-
-            ' Obtiene la sesión
-            session = Connection.Children(0)
-            If session Is Nothing Then
-                Throw New Exception("No se pudo establecer la sesión en SAP.")
-            End If
-
-            ' Introduce las credenciales
-            session.findById("wnd[0]/usr/txtRSYST-BNAME").text = TextBox4.Text
-            session.findById("wnd[0]/usr/pwdRSYST-BCODE").text = TextBox5.Text
-            session.findById("wnd[0]").sendVKey(0)
-
-            ' Verifica si SAP muestra un mensaje de error (ventana de error)
-            Try
-                ' Espera un momento para ver si aparece el mensaje de error de SAP
-                If session.findById("wnd[1]").Type = "GuiDialog" Then
-                    MessageBox.Show("Nombre de usuario o clave de acceso incorrectos.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    TextBox4.Clear() ' Borra el campo de usuario
-                    TextBox5.Clear() ' Borra el campo de contraseña
-                    Return ' Detiene la ejecución
-                End If
-            Catch ex As Exception
-                ' Si no aparece el mensaje de error, se sigue con el flujo normal
-            End Try
-
-            ' Maneja múltiples sesiones abiertas
-            If session.Children.Count > 1 Then
-                session.findById("wnd[1]/usr/radMULTI_LOGON_OPT2").Select()
-                session.findById("wnd[1]/usr/radMULTI_LOGON_OPT2").SetFocus()
-                session.findById("wnd[1]/tbar[0]/btn[0]").Press()
-            End If
-
-            'MessageBox.Show("Conexión exitosa con SAP", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            session.findById("wnd[0]/tbar[0]/okcd").Text = "/nzqm25"
-            session.findById("wnd[0]").sendVKey(0)
-            session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "1000"
-            session.findById("wnd[0]/usr/ctxtSO_FLOTE-LOW").Text = "17.01.2022"
-            session.findById("wnd[0]/usr/ctxtSO_FLOTE-HIGH").Text = "31.12.2030"
-            'session.findById("wnd[0]/usr/ctxtSO_MATNR-LOW").Text = TextBox1.Text
-
-
-
-            'session.findById("wnd[0]/usr/ctxtSO_ART-LOW").Text = "*"
-
-            'session.findById("wnd[0]/usr/btn%_SO_CHARG_%_APP_%-VALU_PUSH").press
-            'session.findById("wnd[1]/tbar[0]/btn[16]").press
-            'session.findById("wnd[1]/tbar[0]/btn[24]").press
-            'session.findById("wnd[1]/tbar[0]/btn[8]").press
-
-            'session.findById("wnd[0]/usr/ctxtSO_ART-LOW").Text = Range("K1").Value
-            session.findById("wnd[0]/usr/ctxtSO_ART-LOW").text = ComboBox2.Text
-            session.findById("wnd[0]/usr/ctxtSO_CHARG-LOW").Text = TextBox1.Text
-            session.findById("wnd[0]/usr/ctxtP_LAYOUT").Text = "/INFORMEFDE"
-            session.findById("wnd[0]/usr/ctxtP_LAYOUT").SetFocus
-            session.findById("wnd[0]/usr/ctxtP_LAYOUT").caretPosition = 11
-            session.findById("wnd[0]/tbar[1]/btn[8]").press
-
-            session.findById("wnd[0]/mbar/menu[0]/menu[3]/menu[2]").Select
-            session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").Select
-            session.findById("wnd[1]/tbar[0]/btn[0]").press
-            'session.findById("wnd[1]/tbar[0]/btn[0]").press
-            session.findById("wnd[1]/usr/ctxtDY_PATH").Text = "\\COMEDFS02\CONTROL CALIDAD DE EMPAQUE\REQUISITOS DE GESTION\INFORMACION ACTIVA\"
-            session.findById("wnd[1]/usr/ctxtDY_FILENAME").Text = "Nuevo.XLS"
-            session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 1
-            session.findById("wnd[1]/tbar[0]/btn[11]").press
-            session.findById("wnd[0]/tbar[0]/btn[3]").press
-            session.findById("wnd[0]/tbar[0]/btn[3]").press
-
-            ''Main()
-        Catch ex As Exception
-            MessageBox.Show($"Error al conectar con SAP: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-        Main()
     End Sub
 
     Private Sub TextBox30_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim defecto1 As String
+        Dim defecto2 As String
+        Dim defecto3 As String
+        Dim defecto4 As String
+        Dim defecto5 As String
+
+        If Aplica1.Checked Then
+
+            defecto1 = Txtdefecto1.Text
+
+        End If
+
+        If Aplica2.Checked Then
+            defecto2 = (Txtdefecto2.Text)
+        End If
+
+        If Aplica3.Checked Then
+            defecto3 = (Txtdefecto3.Text)
+        End If
+
+        If Aplica4.Checked Then
+            defecto4 = (Txtdefecto4.Text)
+        End If
+
+        If Aplica1.Checked Then
+            defecto5 = (Txtdefecto5.Text)
+        End If
 
 
-    Private Sub TextBox8_TextChanged(sender As Object, e As EventArgs) Handles TxtInspec1.TextChanged
+        If Aplica1.Checked Or Aplica2.Checked Or Aplica3.Checked Or Aplica4.Checked Or Aplica5.Checked Then
+            If NotasDE.Text = String.Empty Or TxtObser.Text = String.Empty Then
+                MsgBox("Campos obligatorios vacios... Notas u Observaciónes")
+            Else
+                Dim notafinal As String
+                notafinal = ("El material de empaque no cumple con la(s) siguiente(s) característica(s)." & defecto1 & ": " & Txtunidades1.Text & "/" & TxtInspec1.Text & ", " & TxTiposAql1.Text & ", se rechaza con  " & TextRe1.Text & defecto2 & defecto3 & defecto4 & defecto5 & ". " & TxtObser.Text)
+                TxtNotaFInal.Text = notafinal
+            End If
+        Else
+            MsgBox("No hay defectos seleccionados.")
+        End If
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
 
-    End Sub
 
 
 

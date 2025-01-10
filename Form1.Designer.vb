@@ -29,26 +29,21 @@ Partial Class Form1
         Me.lblNotas = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.NotasDE = New System.Windows.Forms.ComboBox()
-        Me.ObserTxt = New System.Windows.Forms.TextBox()
+        Me.TxtObser = New System.Windows.Forms.TextBox()
         Me.lblobservaciones = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Pass = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Txtdefecto1 = New System.Windows.Forms.TextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
+        Me.Aplica4 = New System.Windows.Forms.CheckBox()
+        Me.Aplica1 = New System.Windows.Forms.CheckBox()
+        Me.Aplica2 = New System.Windows.Forms.CheckBox()
+        Me.Aplica3 = New System.Windows.Forms.CheckBox()
+        Me.Aplica5 = New System.Windows.Forms.CheckBox()
         Me.ablaql = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Txtunidades1 = New System.Windows.Forms.TextBox()
@@ -84,14 +79,16 @@ Partial Class Form1
         Me.Txtdefecto4 = New System.Windows.Forms.TextBox()
         Me.Txtdefecto3 = New System.Windows.Forms.TextBox()
         Me.Txtdefecto2 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TxtNotaFInal = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(629, 515)
+        Me.Button1.Location = New System.Drawing.Point(17, 515)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(107, 32)
         Me.Button1.TabIndex = 0
@@ -111,7 +108,7 @@ Partial Class Form1
         Me.lbllote.AutoSize = True
         Me.lbllote.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.lbllote.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbllote.Location = New System.Drawing.Point(21, 126)
+        Me.lbllote.Location = New System.Drawing.Point(26, 75)
         Me.lbllote.Name = "lbllote"
         Me.lbllote.Size = New System.Drawing.Size(45, 21)
         Me.lbllote.TabIndex = 4
@@ -121,7 +118,7 @@ Partial Class Form1
         '
         Me.lblNotas.AutoSize = True
         Me.lblNotas.Font = New System.Drawing.Font("Microsoft Yi Baiti", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNotas.Location = New System.Drawing.Point(6, 384)
+        Me.lblNotas.Location = New System.Drawing.Point(6, 307)
         Me.lblNotas.Name = "lblNotas"
         Me.lblNotas.Size = New System.Drawing.Size(279, 19)
         Me.lblNotas.TabIndex = 5
@@ -148,24 +145,24 @@ Partial Class Form1
         Me.NotasDE.Items.AddRange(New Object() {"SE DEDEN DESCONTAR 20 UNIDADES PARA FUNCIONALES", "Se aprueba el material por concesión teniendo en cuenta los lineamientos de proce" &
                 "dimiento", "Se rechazan las unidades reportadas en este informe que se encuentran existentes " &
                 "en el inventario", "Se aprueba con Observaciòn con autorizaciòn de I+D o cliente"})
-        Me.NotasDE.Location = New System.Drawing.Point(291, 382)
+        Me.NotasDE.Location = New System.Drawing.Point(291, 305)
         Me.NotasDE.Name = "NotasDE"
         Me.NotasDE.Size = New System.Drawing.Size(479, 21)
         Me.NotasDE.TabIndex = 7
         '
-        'ObserTxt
+        'TxtObser
         '
-        Me.ObserTxt.Location = New System.Drawing.Point(17, 461)
-        Me.ObserTxt.Multiline = True
-        Me.ObserTxt.Name = "ObserTxt"
-        Me.ObserTxt.Size = New System.Drawing.Size(337, 38)
-        Me.ObserTxt.TabIndex = 8
+        Me.TxtObser.Location = New System.Drawing.Point(22, 383)
+        Me.TxtObser.Multiline = True
+        Me.TxtObser.Name = "TxtObser"
+        Me.TxtObser.Size = New System.Drawing.Size(302, 74)
+        Me.TxtObser.TabIndex = 8
         '
         'lblobservaciones
         '
         Me.lblobservaciones.AutoSize = True
         Me.lblobservaciones.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblobservaciones.Location = New System.Drawing.Point(21, 427)
+        Me.lblobservaciones.Location = New System.Drawing.Point(26, 349)
         Me.lblobservaciones.Name = "lblobservaciones"
         Me.lblobservaciones.Size = New System.Drawing.Size(130, 21)
         Me.lblobservaciones.TabIndex = 9
@@ -180,43 +177,6 @@ Partial Class Form1
         Me.Button3.Text = "Buscar Sap"
         Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(62, 19)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox4.TabIndex = 13
-        Me.TextBox4.Text = "gllano"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(62, 53)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox5.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox5.TabIndex = 14
-        Me.TextBox5.Text = "Enerodel2025*"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft YaHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(10, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(30, 16)
-        Me.Label2.TabIndex = 15
-        Me.Label2.Text = "User"
-        '
-        'Pass
-        '
-        Me.Pass.AutoSize = True
-        Me.Pass.Font = New System.Drawing.Font("Microsoft YaHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Pass.Location = New System.Drawing.Point(10, 53)
-        Me.Pass.Name = "Pass"
-        Me.Pass.Size = New System.Drawing.Size(30, 16)
-        Me.Pass.TabIndex = 16
-        Me.Pass.Text = "Pass"
         '
         'DateTimePicker1
         '
@@ -237,20 +197,6 @@ Partial Class Form1
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 18
         Me.PictureBox1.TabStop = False
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
-        Me.GroupBox1.Controls.Add(Me.TextBox5)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Pass)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(164, 81)
-        Me.GroupBox1.TabIndex = 19
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Login"
         '
         'Label3
         '
@@ -291,7 +237,7 @@ Partial Class Form1
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Label7.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(21, 162)
+        Me.Label7.Location = New System.Drawing.Point(26, 111)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(72, 21)
         Me.Label7.TabIndex = 24
@@ -305,50 +251,50 @@ Partial Class Form1
         Me.Txtdefecto1.Size = New System.Drawing.Size(134, 20)
         Me.Txtdefecto1.TabIndex = 29
         '
-        'CheckBox1
+        'Aplica4
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(455, 147)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox1.TabIndex = 30
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.Aplica4.AutoSize = True
+        Me.Aplica4.Location = New System.Drawing.Point(455, 147)
+        Me.Aplica4.Name = "Aplica4"
+        Me.Aplica4.Size = New System.Drawing.Size(15, 14)
+        Me.Aplica4.TabIndex = 30
+        Me.Aplica4.UseVisualStyleBackColor = True
         '
-        'CheckBox3
+        'Aplica1
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(455, 69)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox3.TabIndex = 32
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.Aplica1.AutoSize = True
+        Me.Aplica1.Location = New System.Drawing.Point(455, 69)
+        Me.Aplica1.Name = "Aplica1"
+        Me.Aplica1.Size = New System.Drawing.Size(15, 14)
+        Me.Aplica1.TabIndex = 32
+        Me.Aplica1.UseVisualStyleBackColor = True
         '
-        'CheckBox4
+        'Aplica2
         '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(455, 95)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox4.TabIndex = 33
-        Me.CheckBox4.UseVisualStyleBackColor = True
+        Me.Aplica2.AutoSize = True
+        Me.Aplica2.Location = New System.Drawing.Point(455, 95)
+        Me.Aplica2.Name = "Aplica2"
+        Me.Aplica2.Size = New System.Drawing.Size(15, 14)
+        Me.Aplica2.TabIndex = 33
+        Me.Aplica2.UseVisualStyleBackColor = True
         '
-        'CheckBox5
+        'Aplica3
         '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(455, 120)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox5.TabIndex = 34
-        Me.CheckBox5.UseVisualStyleBackColor = True
+        Me.Aplica3.AutoSize = True
+        Me.Aplica3.Location = New System.Drawing.Point(455, 120)
+        Me.Aplica3.Name = "Aplica3"
+        Me.Aplica3.Size = New System.Drawing.Size(15, 14)
+        Me.Aplica3.TabIndex = 34
+        Me.Aplica3.UseVisualStyleBackColor = True
         '
-        'CheckBox6
+        'Aplica5
         '
-        Me.CheckBox6.AutoSize = True
-        Me.CheckBox6.Location = New System.Drawing.Point(455, 172)
-        Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox6.TabIndex = 35
-        Me.CheckBox6.UseVisualStyleBackColor = True
+        Me.Aplica5.AutoSize = True
+        Me.Aplica5.Location = New System.Drawing.Point(455, 172)
+        Me.Aplica5.Name = "Aplica5"
+        Me.Aplica5.Size = New System.Drawing.Size(15, 14)
+        Me.Aplica5.TabIndex = 35
+        Me.Aplica5.UseVisualStyleBackColor = True
         '
         'ablaql
         '
@@ -420,15 +366,15 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Txtdefecto2)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
         Me.GroupBox2.Controls.Add(Me.Button3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
-        Me.GroupBox2.Controls.Add(Me.CheckBox5)
+        Me.GroupBox2.Controls.Add(Me.Aplica4)
+        Me.GroupBox2.Controls.Add(Me.Aplica3)
         Me.GroupBox2.Controls.Add(Me.Txtunidades1)
-        Me.GroupBox2.Controls.Add(Me.CheckBox6)
+        Me.GroupBox2.Controls.Add(Me.Aplica5)
         Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.CheckBox3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox4)
+        Me.GroupBox2.Controls.Add(Me.Aplica1)
+        Me.GroupBox2.Controls.Add(Me.Aplica2)
         Me.GroupBox2.Controls.Add(Me.Txtdefecto1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 118)
+        Me.GroupBox2.Location = New System.Drawing.Point(17, 67)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(556, 215)
         Me.GroupBox2.TabIndex = 58
@@ -696,17 +642,48 @@ Partial Class Form1
         Me.Txtdefecto2.Size = New System.Drawing.Size(134, 20)
         Me.Txtdefecto2.TabIndex = 57
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(390, 379)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(139, 21)
+        Me.Label2.TabIndex = 60
+        Me.Label2.Text = "Nota final SAP"
+        '
+        'TxtNotaFInal
+        '
+        Me.TxtNotaFInal.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.TxtNotaFInal.Location = New System.Drawing.Point(394, 400)
+        Me.TxtNotaFInal.Multiline = True
+        Me.TxtNotaFInal.Name = "TxtNotaFInal"
+        Me.TxtNotaFInal.Size = New System.Drawing.Size(376, 131)
+        Me.TxtNotaFInal.TabIndex = 59
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(535, 378)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(59, 22)
+        Me.Button2.TabIndex = 86
+        Me.Button2.Text = "Generar"
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.MenuBar
         Me.ClientSize = New System.Drawing.Size(782, 559)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.TxtNotaFInal)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.lblobservaciones)
-        Me.Controls.Add(Me.ObserTxt)
+        Me.Controls.Add(Me.TxtObser)
         Me.Controls.Add(Me.NotasDE)
         Me.Controls.Add(Me.lblNotas)
         Me.Controls.Add(Me.lbllote)
@@ -721,8 +698,6 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Análisis FDE"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
@@ -736,26 +711,21 @@ Partial Class Form1
     Friend WithEvents lblNotas As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents NotasDE As ComboBox
-    Friend WithEvents ObserTxt As TextBox
+    Friend WithEvents TxtObser As TextBox
     Friend WithEvents lblobservaciones As Label
     Friend WithEvents Button3 As Button
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Pass As Label
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Txtdefecto1 As TextBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents CheckBox5 As CheckBox
-    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents Aplica4 As CheckBox
+    Friend WithEvents Aplica1 As CheckBox
+    Friend WithEvents Aplica2 As CheckBox
+    Friend WithEvents Aplica3 As CheckBox
+    Friend WithEvents Aplica5 As CheckBox
     Friend WithEvents ablaql As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Txtunidades1 As TextBox
@@ -791,4 +761,7 @@ Partial Class Form1
     Friend WithEvents TxtInspec2 As TextBox
     Friend WithEvents TxtInspec1 As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TxtNotaFInal As TextBox
+    Friend WithEvents Button2 As Button
 End Class
