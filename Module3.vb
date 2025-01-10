@@ -12,7 +12,7 @@ Module Module3
         ' Iniciar una nueva instancia de Excel
         Dim excelApp As New Excel.Application()
         'Dim worksheet As Excel.Worksheet
-        excelApp.Visible = True  ' Hacer visible la aplicación de Excel
+        excelApp.Visible = False  ' Hacer visible la aplicación de Excel
         ' Abrir un libro de trabajo (reemplaza la ruta por la del archivo que deseas)
         Dim workbook As Excel.Workbook = excelApp.Workbooks.Open("\\comedfs02\Control calidad de empaque\REQUISITOS DE GESTION\INFORMACION ACTIVA\Nuevo1.XLS", [ReadOnly]:=True)
         Dim ws As Excel.Worksheet = CType(workbook.ActiveSheet, Excel.Worksheet)
@@ -77,7 +77,7 @@ Module Module3
         'workbook.Close()
         'excelApp.Quit()
 
-
+        Kill("\\comedfs02\Control calidad de empaque\REQUISITOS DE GESTION\INFORMACION ACTIVA\Nuevo1.XLS")
 
         Dim SAPguiApp As Object = Nothing
         Dim SAPguiAuto As Object = Nothing
@@ -287,7 +287,7 @@ Module Module3
         'Abre tabla de AQL 
 
         Dim excelApp1 As New Excel.Application()
-        excelApp1.Visible = True
+        excelApp1.Visible = False
         Dim workbook2 As Excel.Workbook = excelApp1.Workbooks.Open("\\comedfs02\Reporte Muestreo e Inspección\Formatos CCE\FDE\TablaAQL1.xlsx", [ReadOnly]:=True)
         Dim ws1 As Excel.Worksheet = CType(workbook2.ActiveSheet, Excel.Worksheet)
 

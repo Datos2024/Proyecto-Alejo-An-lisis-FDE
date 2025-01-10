@@ -34,7 +34,7 @@ Public Class Form1
     ' Evento de botón para agregar un registro '
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' Abrir excel '
-        Libro = ExcelApp.Workbooks.Open("\\ comedfs02 \ Control calidad de empaque\REQUISITOS DE GESTION\INFORMACION ACTIVA\Nuevo.xlsx")
+        Libro = ExcelApp.Workbooks.Open("\\COMEDFS02\Reporte Muestreo e Inspección\Formatos CCE\FDE\AnálisisFDE.xlsx")
         Hoja1 = Libro.Sheets("Hoja1")
         Final = nReg(Hoja1, 1)
 
@@ -221,32 +221,57 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim defecto1 As String
-        Dim defecto2 As String
-        Dim defecto3 As String
-        Dim defecto4 As String
-        Dim defecto5 As String
-
+        Dim defecto1, unidades1, unidadesins1, aql1, re1 As String
+        'Dim defecto1, aql1, re1 As String
+        'Dim unidades1, unidadesins1 As Integer
+        Dim defecto2, unidades2, unidadesins2, aql2, re2 As String
+        Dim defecto3, unidades3, unidadesins3, aql3, re3 As String
+        Dim defecto4, unidades4, unidadesins4, aql4, re4 As String
+        Dim defecto5, unidades5, unidadesins5, aql5, re5 As String
+        Dim notafinal1, notafinal2, notafinal3, notafinal4, notafinal5 As String
         If Aplica1.Checked Then
-
             defecto1 = Txtdefecto1.Text
-
+            unidades1 = Txtunidades1.Text
+            unidadesins1 = TxtInspec1.Text
+            aql1 = TxTiposAql1.Text
+            re1 = TextRe1.Text
+            notafinal1 = (defecto1 & ": " & unidades1 & "/" & unidadesins1 & ", " & aql1 & ", se rechaza con  " & re1 & " unidad(es). " & vbCrLf)
         End If
 
         If Aplica2.Checked Then
             defecto2 = (Txtdefecto2.Text)
+            unidades2 = Txtunidades2.Text
+            unidadesins2 = TxtInspec2.Text
+            aql2 = TxTiposAql2.Text
+            re2 = TextRe2.Text
+            notafinal2 = (defecto2 & ": " & unidades2 & "/" & unidadesins2 & ", " & aql2 & ", se rechaza con  " & re2 & " unidad(es). " & vbCrLf)
         End If
 
         If Aplica3.Checked Then
-            defecto3 = (Txtdefecto3.Text)
+            defecto3 = Txtdefecto3.Text
+            unidades3 = Txtunidades3.Text
+            unidadesins3 = TxtInspec3.Text
+            aql3 = TxTiposAql3.Text
+            re3 = TextRe3.Text
+            notafinal3 = (defecto3 & ": " & unidades3 & "/" & unidadesins3 & ", " & aql3 & ", se rechaza con  " & re3 & " unidad(es). " & vbCrLf)
         End If
 
         If Aplica4.Checked Then
-            defecto4 = (Txtdefecto4.Text)
+            defecto4 = Txtdefecto4.Text
+            unidades4 = Txtunidades4.Text
+            unidadesins4 = TxtInspec4.Text
+            aql4 = TxTiposAql4.Text
+            re4 = TextRe4.Text
+            notafinal4 = (defecto4 & ": " & unidades4 & "/" & unidadesins4 & ", " & aql4 & ", se rechaza con  " & re4 & " unidad(es). " & vbCrLf)
         End If
 
-        If Aplica1.Checked Then
-            defecto5 = (Txtdefecto5.Text)
+        If Aplica5.Checked Then
+            defecto5 = Txtdefecto5.Text
+            unidades5 = Txtunidades5.Text
+            unidadesins5 = TxtInspec5.Text
+            aql5 = TxTiposAql5.Text
+            re5 = TextRe5.Text
+            notafinal5 = (defecto5 & ": " & unidades5 & "/" & unidadesins5 & ", " & aql5 & ", se rechaza con  " & re5 & " unidad(es). " & vbCrLf)
         End If
 
 
@@ -255,8 +280,16 @@ Public Class Form1
                 MsgBox("Campos obligatorios vacios... Notas u Observaciónes")
             Else
                 Dim notafinal As String
-                notafinal = ("El material de empaque no cumple con la(s) siguiente(s) característica(s)." & defecto1 & ": " & Txtunidades1.Text & "/" & TxtInspec1.Text & ", " & TxTiposAql1.Text & ", se rechaza con  " & TextRe1.Text & defecto2 & defecto3 & defecto4 & defecto5 & ". " & TxtObser.Text)
+                notafinal = ("El material de empaque no cumple con la(s) siguiente(s) característica(s)." & vbCrLf _
+                & (notafinal1) _
+                & (notafinal2) _
+                & (notafinal3) _
+                & (notafinal4) _
+                & (notafinal5) _
+                & TxtObser.Text & ". " & vbCrLf _
+                & NotasDE.Text) & ". "
                 TxtNotaFInal.Text = notafinal
+
             End If
         Else
             MsgBox("No hay defectos seleccionados.")

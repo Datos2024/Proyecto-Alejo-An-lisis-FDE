@@ -122,7 +122,7 @@ Partial Class Form1
         Me.lblNotas.Name = "lblNotas"
         Me.lblNotas.Size = New System.Drawing.Size(279, 19)
         Me.lblNotas.TabIndex = 5
-        Me.lblNotas.Text = "¿Cuál es la NOTA para este DE?"
+        Me.lblNotas.Text = "¿Cuál es la NOTA para está DE?"
         '
         'TextBox1
         '
@@ -170,7 +170,7 @@ Partial Class Form1
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(377, 12)
+        Me.Button3.Location = New System.Drawing.Point(404, 12)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 22)
         Me.Button3.TabIndex = 12
@@ -203,7 +203,7 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Label3.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(398, 43)
+        Me.Label3.Location = New System.Drawing.Point(444, 43)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(35, 21)
         Me.Label3.TabIndex = 20
@@ -214,7 +214,7 @@ Partial Class Form1
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Label4.Font = New System.Drawing.Font("Microsoft Yi Baiti", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(357, 43)
+        Me.Label4.Location = New System.Drawing.Point(403, 43)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(35, 21)
         Me.Label4.TabIndex = 21
@@ -254,7 +254,7 @@ Partial Class Form1
         'Aplica4
         '
         Me.Aplica4.AutoSize = True
-        Me.Aplica4.Location = New System.Drawing.Point(455, 147)
+        Me.Aplica4.Location = New System.Drawing.Point(501, 147)
         Me.Aplica4.Name = "Aplica4"
         Me.Aplica4.Size = New System.Drawing.Size(15, 14)
         Me.Aplica4.TabIndex = 30
@@ -263,7 +263,7 @@ Partial Class Form1
         'Aplica1
         '
         Me.Aplica1.AutoSize = True
-        Me.Aplica1.Location = New System.Drawing.Point(455, 69)
+        Me.Aplica1.Location = New System.Drawing.Point(501, 69)
         Me.Aplica1.Name = "Aplica1"
         Me.Aplica1.Size = New System.Drawing.Size(15, 14)
         Me.Aplica1.TabIndex = 32
@@ -272,7 +272,7 @@ Partial Class Form1
         'Aplica2
         '
         Me.Aplica2.AutoSize = True
-        Me.Aplica2.Location = New System.Drawing.Point(455, 95)
+        Me.Aplica2.Location = New System.Drawing.Point(501, 95)
         Me.Aplica2.Name = "Aplica2"
         Me.Aplica2.Size = New System.Drawing.Size(15, 14)
         Me.Aplica2.TabIndex = 33
@@ -281,7 +281,7 @@ Partial Class Form1
         'Aplica3
         '
         Me.Aplica3.AutoSize = True
-        Me.Aplica3.Location = New System.Drawing.Point(455, 120)
+        Me.Aplica3.Location = New System.Drawing.Point(501, 120)
         Me.Aplica3.Name = "Aplica3"
         Me.Aplica3.Size = New System.Drawing.Size(15, 14)
         Me.Aplica3.TabIndex = 34
@@ -290,7 +290,7 @@ Partial Class Form1
         'Aplica5
         '
         Me.Aplica5.AutoSize = True
-        Me.Aplica5.Location = New System.Drawing.Point(455, 172)
+        Me.Aplica5.Location = New System.Drawing.Point(501, 172)
         Me.Aplica5.Name = "Aplica5"
         Me.Aplica5.Size = New System.Drawing.Size(15, 14)
         Me.Aplica5.TabIndex = 35
@@ -312,7 +312,7 @@ Partial Class Form1
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Label5.Font = New System.Drawing.Font("Microsoft Yi Baiti", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(439, 46)
+        Me.Label5.Location = New System.Drawing.Point(485, 46)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 19)
         Me.Label5.TabIndex = 37
@@ -376,7 +376,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Txtdefecto1)
         Me.GroupBox2.Location = New System.Drawing.Point(17, 67)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(556, 215)
+        Me.GroupBox2.Size = New System.Drawing.Size(577, 215)
         Me.GroupBox2.TabIndex = 58
         Me.GroupBox2.TabStop = False
         '
@@ -444,12 +444,12 @@ Partial Class Form1
         Me.ComboBox2.Items.AddRange(New Object() {"Z01", "08", "09", "Z055", "Z04", "Z088"})
         Me.ComboBox2.Location = New System.Drawing.Point(254, 12)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(119, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(140, 21)
         Me.ComboBox2.TabIndex = 59
         '
         'TextRe5
         '
-        Me.TextRe5.Location = New System.Drawing.Point(398, 172)
+        Me.TextRe5.Location = New System.Drawing.Point(444, 172)
         Me.TextRe5.Multiline = True
         Me.TextRe5.Name = "TextRe5"
         Me.TextRe5.Size = New System.Drawing.Size(31, 20)
@@ -468,7 +468,7 @@ Partial Class Form1
         '
         'TextAc5
         '
-        Me.TextAc5.Location = New System.Drawing.Point(361, 172)
+        Me.TextAc5.Location = New System.Drawing.Point(407, 172)
         Me.TextAc5.Multiline = True
         Me.TextAc5.Name = "TextAc5"
         Me.TextAc5.Size = New System.Drawing.Size(31, 20)
@@ -476,7 +476,7 @@ Partial Class Form1
         '
         'TextRe4
         '
-        Me.TextRe4.Location = New System.Drawing.Point(398, 147)
+        Me.TextRe4.Location = New System.Drawing.Point(444, 147)
         Me.TextRe4.Multiline = True
         Me.TextRe4.Name = "TextRe4"
         Me.TextRe4.Size = New System.Drawing.Size(31, 20)
@@ -484,7 +484,7 @@ Partial Class Form1
         '
         'TextAc4
         '
-        Me.TextAc4.Location = New System.Drawing.Point(361, 147)
+        Me.TextAc4.Location = New System.Drawing.Point(407, 147)
         Me.TextAc4.Multiline = True
         Me.TextAc4.Name = "TextAc4"
         Me.TextAc4.Size = New System.Drawing.Size(31, 20)
@@ -492,7 +492,7 @@ Partial Class Form1
         '
         'TextRe3
         '
-        Me.TextRe3.Location = New System.Drawing.Point(398, 120)
+        Me.TextRe3.Location = New System.Drawing.Point(444, 120)
         Me.TextRe3.Multiline = True
         Me.TextRe3.Name = "TextRe3"
         Me.TextRe3.Size = New System.Drawing.Size(31, 20)
@@ -500,7 +500,7 @@ Partial Class Form1
         '
         'TextAc3
         '
-        Me.TextAc3.Location = New System.Drawing.Point(361, 120)
+        Me.TextAc3.Location = New System.Drawing.Point(407, 120)
         Me.TextAc3.Multiline = True
         Me.TextAc3.Name = "TextAc3"
         Me.TextAc3.Size = New System.Drawing.Size(31, 20)
@@ -508,7 +508,7 @@ Partial Class Form1
         '
         'TextRe2
         '
-        Me.TextRe2.Location = New System.Drawing.Point(398, 94)
+        Me.TextRe2.Location = New System.Drawing.Point(444, 94)
         Me.TextRe2.Multiline = True
         Me.TextRe2.Name = "TextRe2"
         Me.TextRe2.Size = New System.Drawing.Size(31, 20)
@@ -516,7 +516,7 @@ Partial Class Form1
         '
         'TextAc2
         '
-        Me.TextAc2.Location = New System.Drawing.Point(361, 94)
+        Me.TextAc2.Location = New System.Drawing.Point(407, 94)
         Me.TextAc2.Multiline = True
         Me.TextAc2.Name = "TextAc2"
         Me.TextAc2.Size = New System.Drawing.Size(31, 20)
@@ -524,7 +524,7 @@ Partial Class Form1
         '
         'TextRe1
         '
-        Me.TextRe1.Location = New System.Drawing.Point(398, 69)
+        Me.TextRe1.Location = New System.Drawing.Point(444, 69)
         Me.TextRe1.Multiline = True
         Me.TextRe1.Name = "TextRe1"
         Me.TextRe1.Size = New System.Drawing.Size(31, 20)
@@ -532,7 +532,7 @@ Partial Class Form1
         '
         'TextAc1
         '
-        Me.TextAc1.Location = New System.Drawing.Point(361, 69)
+        Me.TextAc1.Location = New System.Drawing.Point(407, 69)
         Me.TextAc1.Multiline = True
         Me.TextAc1.Name = "TextAc1"
         Me.TextAc1.Size = New System.Drawing.Size(31, 20)
@@ -540,42 +540,47 @@ Partial Class Form1
         '
         'TxTiposAql5
         '
+        Me.TxTiposAql5.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTiposAql5.Location = New System.Drawing.Point(259, 172)
         Me.TxTiposAql5.Multiline = True
         Me.TxTiposAql5.Name = "TxTiposAql5"
-        Me.TxTiposAql5.Size = New System.Drawing.Size(96, 20)
+        Me.TxTiposAql5.Size = New System.Drawing.Size(135, 20)
         Me.TxTiposAql5.TabIndex = 69
         '
         'TxTiposAql4
         '
+        Me.TxTiposAql4.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTiposAql4.Location = New System.Drawing.Point(259, 147)
         Me.TxTiposAql4.Multiline = True
         Me.TxTiposAql4.Name = "TxTiposAql4"
-        Me.TxTiposAql4.Size = New System.Drawing.Size(96, 20)
+        Me.TxTiposAql4.Size = New System.Drawing.Size(135, 20)
         Me.TxTiposAql4.TabIndex = 68
         '
         'TxTiposAql3
         '
+        Me.TxTiposAql3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTiposAql3.Location = New System.Drawing.Point(259, 120)
         Me.TxTiposAql3.Multiline = True
         Me.TxTiposAql3.Name = "TxTiposAql3"
-        Me.TxTiposAql3.Size = New System.Drawing.Size(96, 20)
+        Me.TxTiposAql3.Size = New System.Drawing.Size(135, 20)
         Me.TxTiposAql3.TabIndex = 67
         '
         'TxTiposAql2
         '
+        Me.TxTiposAql2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTiposAql2.Location = New System.Drawing.Point(259, 94)
         Me.TxTiposAql2.Multiline = True
         Me.TxTiposAql2.Name = "TxTiposAql2"
-        Me.TxTiposAql2.Size = New System.Drawing.Size(96, 20)
+        Me.TxTiposAql2.Size = New System.Drawing.Size(135, 20)
         Me.TxTiposAql2.TabIndex = 66
         '
         'TxTiposAql1
         '
+        Me.TxTiposAql1.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTiposAql1.Location = New System.Drawing.Point(259, 68)
         Me.TxTiposAql1.Multiline = True
         Me.TxTiposAql1.Name = "TxTiposAql1"
-        Me.TxTiposAql1.Size = New System.Drawing.Size(96, 20)
+        Me.TxTiposAql1.Size = New System.Drawing.Size(135, 20)
         Me.TxTiposAql1.TabIndex = 65
         '
         'Txtunidades5
@@ -658,6 +663,7 @@ Partial Class Form1
         Me.TxtNotaFInal.Location = New System.Drawing.Point(394, 400)
         Me.TxtNotaFInal.Multiline = True
         Me.TxtNotaFInal.Name = "TxtNotaFInal"
+        Me.TxtNotaFInal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TxtNotaFInal.Size = New System.Drawing.Size(376, 131)
         Me.TxtNotaFInal.TabIndex = 59
         '
